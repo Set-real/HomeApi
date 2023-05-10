@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeApi.Data.Queries
+﻿namespace HomeApi.Data.Queries
 {
-    internal class UpdateRoomQuery
+    public class UpdateRoomQuery
     {
+        public string NewName { get; set; }
+        public int NewAria { get; set; }
+
+        public UpdateRoomQuery(string newName, int newAria)
+        {
+            NewName = newName;
+            NewAria = newAria;
+        }
     }
 }
