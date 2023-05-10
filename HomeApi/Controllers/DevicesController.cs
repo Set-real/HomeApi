@@ -103,7 +103,15 @@ namespace HomeApi.Controllers
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delite(
-            [FromRoute] Guid id,
-            [FromBody] )
+            [FromRoute] Guid id)
+        {
+            var deviceId = await _devices.GetDeviceById(id);
+            if(deviceId == null)
+                return StatusCode(400, $"Ошибка: Устройство с идентификатором {id} не существует.");
+
+            await _devices.DeleteDevice(deviceId);
+
+            return StatusCode(200, $"Устройство {deviceId.Name} было успешно удалено!");
+        }
     }
 }
