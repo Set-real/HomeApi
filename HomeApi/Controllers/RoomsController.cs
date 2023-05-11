@@ -57,8 +57,6 @@ namespace HomeApi.Controllers
             [FromBody] EditRoomRequest request)
         {
             var room = _repository.GetRoomById(id).Result;
-            //var room = await _repository.GetRoomByName(request.NewRoomName);
-
             if (room == null)
                 return StatusCode(400, $"Комната с Id{room.Id} не найдена, проверте правильность написания данных!");
 
