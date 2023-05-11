@@ -55,11 +55,13 @@ namespace HomeApi.Controllers
         public async Task<IActionResult> Update(
             [FromRoute] Guid id,
             [FromBody] EditRoomRequest request)
-        {           
-            var roomId = _repository.GetRoomById(id);
-            if (roomId == null)
-                return StatusCode(400, $"Комната с Id{roomId} не найдена, проверте правильность написания данных!");
-            var room = await _repository.GetRoomByName(request.NewRoomName);
+        {
+            var room = _repository.GetRoomById(id).Result;
+            //var room = await _repository.GetRoomByName(request.NewRoomName);
+
+            if (room == null)
+                return StatusCode(400, $"Комната с Id{room.Id} не найдена, проверте правильность написания данных!");
+
 
             await _repository.UpdateRoom(
                 id,
@@ -69,6 +71,7 @@ namespace HomeApi.Controllers
                     request.NewRoonAria,
                     request.NewRoomVoltage,
                     request.NewRoomGasConnected));
+
 
             return StatusCode(200, $"Комната {request.NewRoomName} была успешно обновлена!");
         }

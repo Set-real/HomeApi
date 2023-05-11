@@ -17,6 +17,8 @@ namespace HomeApi.Contracts.Validation
             RuleFor(x => x.NewRoomName).NotEmpty().Must(BeSupported)
                 .WithMessage($"Please choose one of the following locations: {string.Join(", ", Values.ValidRooms)}");
             RuleFor(x => x.NewRoonAria).NotEmpty();
+            RuleFor(x => x.NewRoomGasConnected).NotEmpty();
+            RuleFor(x => x.NewRoomVoltage).NotNull();
         }
 
         /// <summary>
