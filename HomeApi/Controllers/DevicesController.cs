@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using HomeApi.Contracts.Models.Devices;
 using HomeApi.Contracts.Models.Devices.Request;
+using HomeApi.Contracts.Models.Devices.Response;
 using HomeApi.Data.Models;
 using HomeApi.Data.Queries;
 using HomeApi.Data.Repos;
@@ -45,9 +45,7 @@ namespace HomeApi.Controllers
             
             return StatusCode(200, resp);
         }
-        
-        // TODO: Задание: напишите запрос на удаление устройства
-        
+
         /// <summary>
         /// Добавление нового устройства
         /// </summary>

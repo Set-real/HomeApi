@@ -13,9 +13,9 @@ namespace HomeApi.Contracts.Validation
         /// Метод-конструктор, устанавливающий правила
         /// </summary>
         public EditRoomRequestValidator() 
-        { 
+        {
             RuleFor(x => x.NewRoomName).NotEmpty().Must(BeSupported)
-                .WithMessage("$\"Please choose one of the following locations: {string.Join(\", \", Values.ValidRooms)}\""); ;
+                .WithMessage($"Please choose one of the following locations: {string.Join(", ", Values.ValidRooms)}");
             RuleFor(x => x.NewRoonAria).NotEmpty();
         }
 

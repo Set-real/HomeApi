@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using HomeApi.Data.Models;
 using HomeApi.Data.Queries;
@@ -24,6 +25,16 @@ namespace HomeApi.Data.Repos
         public async Task<Room> GetRoomByName(string name)
         {
             return await _context.Rooms.Where(r => r.Name == name).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// Найти комнату по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<Room> GetRoomById(Guid id)
+        {
+            return await GetRoomByName(id.ToString());
         }
         
         /// <summary>
