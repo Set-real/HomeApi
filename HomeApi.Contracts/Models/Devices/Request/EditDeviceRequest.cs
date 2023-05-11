@@ -1,4 +1,4 @@
-﻿namespace HomeApi.Contracts.Models.Devices
+﻿namespace HomeApi.Contracts.Models.Devices.Request
 {
     /// <summary>
     /// Запрос для обновления свойств подключенного устройства

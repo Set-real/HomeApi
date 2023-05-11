@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
-using HomeApi.Contracts.Models.Rooms;
+using HomeApi.Contracts.Models.Rooms.Request;
 using HomeApi.Data.Models;
 using HomeApi.Data.Repos;
 using Microsoft.AspNetCore.Mvc;

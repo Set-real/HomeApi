@@ -1,4 +1,4 @@
-﻿namespace HomeApi.Contracts.Models.Rooms
+﻿namespace HomeApi.Contracts.Models.Rooms.Request
 {
     public class AddRoomRequest
     {

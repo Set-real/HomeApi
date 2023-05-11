@@ -1,4 +1,4 @@
-﻿namespace HomeApi.Contracts.Models.Devices
+﻿namespace HomeApi.Contracts.Models.Rooms.Request
 {
     /// <summary>
     /// Запрос для обновления свойств конматы

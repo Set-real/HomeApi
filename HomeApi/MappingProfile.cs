@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using HomeApi.Configuration;
-using HomeApi.Contracts.Models.Devices;
+using HomeApi.Contracts.Models.Devices.Request;
+using HomeApi.Contracts.Models.Devices.Response;
 using HomeApi.Contracts.Models.Home;
-using HomeApi.Contracts.Models.Rooms;
+using HomeApi.Contracts.Models.Rooms.Request;
 using HomeApi.Data.Models;
 
 namespace HomeApi

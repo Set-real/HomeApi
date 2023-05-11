@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using FluentValidation;
-using HomeApi.Contracts.Models.Devices;
+using HomeApi.Contracts.Models.Devices.Request;
 
 namespace HomeApi.Contracts.Validation
 {
