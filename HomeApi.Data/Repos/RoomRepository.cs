@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using HomeApi.Data.Models;
 using HomeApi.Data.Queries;
@@ -34,7 +35,7 @@ namespace HomeApi.Data.Repos
         /// <returns></returns>
         public async Task<Room> GetRoomById(Guid id)
         {
-            return await GetRoomByName(id.ToString());
+            return await _context.Rooms.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
         
         /// <summary>
@@ -48,16 +49,21 @@ namespace HomeApi.Data.Repos
             
             await _context.SaveChangesAsync();
         }
+
         /// <summary>
         /// Метод для обновления существующей комнаты
         /// </summary>
-        public async Task UpdateRoom(Room room, UpdateRoomQuery query)
+        public async Task UpdateRoom(Guid id,Room room, UpdateRoomQuery query)
         {
             // Проверка переданных параметров
+            if(id == room.Id) 
+            { 
             if(!string.IsNullOrEmpty(room.Name))
-                room.Name = query.NewName;
-            if(room.Name == query.NewName)
+                room.Name = query.NewName;           
                 room.Area = query.NewAria;
+                room.GasConnected = query.NewGasConntcted;
+                room.Voltage = query.NewVoltage;
+            }
             
             // Добавляем изменения в базу
             var entry = _context.Entry(room);

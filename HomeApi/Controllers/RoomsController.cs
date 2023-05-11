@@ -16,8 +16,8 @@ namespace HomeApi.Controllers
     public class RoomsController : ControllerBase
     {
         private IRoomRepository _repository;
-        private IMapper _mapper;
-        
+        private IMapper _mapper;        
+
         public RoomsController(IRoomRepository repository, IMapper mapper)
         {
             _repository = repository;
@@ -44,18 +44,31 @@ namespace HomeApi.Controllers
             return StatusCode(409, $"Ошибка: Комната {request.Name} уже существует.");
         }
 
+        /// <summary>
+        /// Методя для обновления комнаты
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update(
             [FromRoute] Guid id,
             [FromBody] EditRoomRequest request)
-        {
+        {           
+            var roomId = _repository.GetRoomById(id);
+            if (roomId == null)
+                return StatusCode(400, $"Комната с Id{roomId} не найдена, проверте правильность написания данных!");
             var room = await _repository.GetRoomByName(request.NewRoomName);
-            if (room == null)
-                return StatusCode(400, $"Комната {request.NewRoomName} не найдена, пожалуйста проверте введенные данные!");
 
-            await _repository.UpdateRoom(room,
-                new Data.Queries.UpdateRoomQuery(request.NewRoomName, request.NewRoonAria));
+            await _repository.UpdateRoom(
+                id,
+                room,
+                new Data.Queries.UpdateRoomQuery(
+                    request.NewRoomName,
+                    request.NewRoonAria,
+                    request.NewRoomVoltage,
+                    request.NewRoomGasConnected));
 
             return StatusCode(200, $"Комната {request.NewRoomName} была успешно обновлена!");
         }

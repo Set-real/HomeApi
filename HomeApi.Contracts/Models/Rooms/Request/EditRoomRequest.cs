@@ -7,5 +7,7 @@
     {
         public string NewRoomName { get; set; }
         public int NewRoonAria { get; set; }
+        public int NewRoomVoltage { get; set; }
+        public bool NewRoomGasConnected { get; set; }
     }
 }
